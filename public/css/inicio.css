@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+/*estilos para el body de la pagina de inicio*/
+.body-inicio{
+  background-image: url(../img/fondo-body.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.contenedorprincipal{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tablaposiciones{
+  margin: 2%;
+}
+.miembrosvisibles{
+  margin: 2% 0 2% 2%;
+}
+.tablaposiciones,.miembrosvisibles{
+  background-color:#364D3F;
+  padding: 10px;
+}
+.ayudas{
+  color: white;
+}
+.chatgeneral{
+  background-color: #4f6b5a;
+  padding: 10px;
+  font-family: 'Merienda', cursive;
+  font-weight: 400;
+  color: #ffecb3;
+  margin-top: 2%;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.estilotextarea{
+  width: calc(100% - 110px);
+  float:left;
+  min-height: 35px;
+  outline: none;
+  font-size: 12px;
+}
+.chatejemplo{
+  font-size: 12px;
+}
+.media .avatar {
+    width: 50px;
+}
+.shadow-textarea textarea.form-control {
+    padding-left: 12px;
+}
+.bottoncomentario:focus,.estilotextarea:focus {
+    border: 1px solid #8bc34a;
+    box-shadow: 0 0 0 0.2rem rgba(139, 195, 74, 0.25);
+}
+h5{
+  font-weight: bold;
+  color: black;
+  font-size: 16px;
+  margin-top:0;
+}
+.bottoncomentario{
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #8bd6a1;
+  margin-left: 30px;
+  margin-top: 20px;
+  outline: none;
+}
+.estilotextareaejemplo{
+  float:left;
+  min-height: 35px;
+  outline: none;
+  font-size: 12px;
+}
