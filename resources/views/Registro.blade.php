@@ -24,23 +24,28 @@
 
           <label for="email" class="label1">Correo de referencia</label>
           <input type="email" name="email" value="{{old('email')}}" class="field">
-          @if($errors->any())
-          <p class='alert alert-danger'>{{ $errors->first('email') }}</p>
-          @endif
+
+          @error('email')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
 
           <label for="password" class="label1">Contraseña</label>
           <input type="password" name="password" value="" class="field">
           <small id="passwordHelpInline" class="text-muted smallpass">
             Utiliza 8 caracteres como mínimo combinando letras y números.
           </small>
-          @if($errors->any())
-          <p class='alert alert-danger'>{{ $errors->first('password') }}</p>
-          @endif
+
+          @error('password')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+
           <label for="password_confirmation" class="label1">Reconfirmación de la contraseña</label>
           <input type="password" name="password_confirmation" value="" class="field">
-          @if($errors->any())
-          <p class='alert alert-danger'>{{ $errors->first('reconfi-password') }}</p>
-          @endif
+
+          @error('password_confirmation')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+
           <div class="form-group">
             <label>Seleccione su país</label>
             <br>
@@ -58,9 +63,9 @@
           <div class="archivo">
               Archivo: <input type="file" name="avatar" id="avatar" value="">
           </div>
-          @if($errors->any())
-          <p class='alert alert-danger'>{{ $errors->first('avatar') }}</p>
-          @endif
+          @error('avatar')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
           <br>
           <button type="submit" class="bottonacceder">Registrarme</button>
           </form>

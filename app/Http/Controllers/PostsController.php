@@ -15,7 +15,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts=Post::all();
-        return view("post.listado", ["posts"=>$posts]);
+        return view("post.create", ["posts"=>$posts]);
     }
 
     /**

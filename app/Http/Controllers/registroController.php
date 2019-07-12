@@ -10,13 +10,19 @@ use App\Country;
 
 class registroController extends Controller
 {
+
+    public function index()
+    {
+      $usuarios=usuario::all();
+      return view("usuario.listadoUsuarios", ["usuarios"=>$usuarios]);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function create()
+    public function create()        //Muestro el formulario, creo al usuario
     {
       $countries= \App\Country::all();
       return view('Registro', ['countries'=> $countries]);
@@ -28,10 +34,10 @@ class registroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(\App\Http\Requests\RegisterUserRequest $data)
-    {
+    public function store(\App\Http\Requests\RegisterUserRequest $data) // \App\Http\Requests\RegisterUserRequest->aqui estan las reglas de validacion.
+    {         //con esta función guardo al usuario creado en la BD
 
-      
+
         //para guardar el avatar primero generamos una variable vacia
         $nombreArchivo = '';
         //pregunta al formulario si tiene un avatar. Si lo tiene, toma la ruta del storage public
@@ -47,9 +53,7 @@ class registroController extends Controller
         $nuevoUsuario->role=1;
         $nuevoUsuario->country_id=$data['country_id'];
         $nuevoUsuario->save();
-
-
-
+        return redirect('/login');
 
     }
 
@@ -59,19 +63,11 @@ class registroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(\App\usuario $usuarios)
+    public function show(\App\usuario $usuarios) //REVISAR
     {
       $usuarios= usuario::all();
-      return view('showUsuarios', ['usuarios'=>$usuarios]);
+      return view('usuario.detalleUsuario', ['usuarios'=>$usuarios]);
     }
-
-    public function detalleUsuario(\App\usuario $usuarios)
-    {
-      $usuarios= usuario::all();
-      //$usuario= usuario::find($usuario);
-      return view('detalleUsuario', ['usuarios'=>$usuarios]);
-    }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -79,10 +75,11 @@ class registroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(\App\usuario $usuario)
+    public function edit(\App\usuario $usuario) //Aquí edito al usuario
     {
-      $usuario= usuario::find($usuario);
-      return view('editUsuario',['usuario'=>$usuario]);
+
+      //$usuario= usuario::find($usuario); REVISAR
+      return view('usuario.editUsuario',['usuario'=>$usuario]);
     }
 
     /**
@@ -92,9 +89,15 @@ class registroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, usuario $usuario) //Aquí actualizo en BD la info editada
     {
-        //
+      $usuario->update([
+        'name'=>$request->get('name'),
+        'email'=>$request->get('email'),
+        'avatar'=>$request->get('avatar'),
+        'country_id'=>$request->get('country_id'),
+      ]);
+      return redirect("/register");
     }
 
     /**
@@ -103,11 +106,10 @@ class registroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(\App\usuario $id)
+    public function destroy(\App\usuario $usuario)
     {
-        $usuario= usuario::find($id);
         $usuario->delete();
-        return view('borrarUsuario', ['usuario'=>$usuario]);
+        return view('usuario.listadoUsuarios');
     }
 
 

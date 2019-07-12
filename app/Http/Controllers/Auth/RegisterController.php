@@ -52,7 +52,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'avatar' =>['required'],
 
         ]);
     }
@@ -65,18 +64,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      //para guardar el avatar primero generamos una variable vacia
-      $nombreArchivo = '';
-      //pregunta al formulario si tiene un avatar. Si lo tiene, toma la ruta del storage public
-      //y lo guarda en el nombre del archivo
-      if(request()->has('avatar')) {
-        $nombreArchivo = request('avatar')->storePublicly('avatars');
-      }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'avatar' =>$nombreArchivo,
+
         ]);
     }
 }

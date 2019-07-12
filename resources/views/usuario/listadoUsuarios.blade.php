@@ -29,15 +29,15 @@
 
                 <th scope="row">{{$usuario->id}}</th>
                 <td>{{$usuario->name}}</td>
-                <td><a href="detalleUsuario?id={{$usuario->id}}">
+                <td><a href="showUsuario">
                       <i class="far fa-eye"></i>
                     </a>
                 </td>
-                <td><a href="editUsuario?id={{$usuario->id}}">
+                <td><a href="view(usuario.editUsuario)">
                       <i class="far fa-edit"></i>
                     </a>
                 </td>
-                <td><a href="borrarUsuario?id={{$usuario->id}}">
+                 <td><a href="{{url('/borrarUsuario', $usuario->id)}}">  <!-- COMO HAGO PARA QUE RETORNE A UNA VISTA ANTES DE ELIMINAR AL USUARIO  O PREGUNTARLE SI ESTA SEGURO ELIMINAR AL USUARIO-->
                       <i class="far fa-trash-alt"></i>
                     </a>
                 </td>
