@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
 
-class PostsController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
-        return view("post.index", ["posts"=>$posts]);
+
     }
 
     /**
@@ -25,7 +23,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view("post.create");
+         return view('login');
     }
 
     /**
@@ -34,14 +32,9 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\LoginRequest $request)
     {
-        Post::create([
-          'description'=>$request->get('description'),
-          'user_id' => 1
-        ]);
-
-        return redirect("/posts");
+      
     }
 
     /**
@@ -61,9 +54,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('post.edit',['post'=>$post]);
+        //
     }
 
     /**
@@ -73,14 +66,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-      $post->update([
-        'description'=>$request->get('description'),
-        'user_id' => 1
-      ]);
-
-      return redirect("/posts");
+        //
     }
 
     /**
@@ -89,9 +77,8 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
-        return redirect('/posts');
+        //
     }
 }

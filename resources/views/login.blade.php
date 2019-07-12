@@ -6,7 +6,7 @@
 
 @section('content')
 @include('partials.carousel')
-        <form class="formlogin" action="" method="post">
+        <form class="formlogin" action="{{url('/login')}}" method="post">
           {{csrf_field()}}
           <h2>Log in</h2>
           <label for="email" class="label1">Correo electrónico</label><br>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\usuario;
 use App\Country;
+use App\User;
 
 class registroController extends Controller
 {
@@ -77,8 +78,6 @@ class registroController extends Controller
      */
     public function edit(\App\usuario $usuario) //Aquí edito al usuario
     {
-
-      //$usuario= usuario::find($usuario); REVISAR
       return view('usuario.editUsuario',['usuario'=>$usuario]);
     }
 
@@ -94,10 +93,12 @@ class registroController extends Controller
       $usuario->update([
         'name'=>$request->get('name'),
         'email'=>$request->get('email'),
+        'password'=>Hash::make($request->get('password')),
         'avatar'=>$request->get('avatar'),
+        'role'=>$request->get('role'),
         'country_id'=>$request->get('country_id'),
       ]);
-      return redirect("/register");
+      return redirect("/listadoUsuarios"); //  CHEQUEAR
     }
 
     /**
@@ -109,7 +110,7 @@ class registroController extends Controller
     public function destroy(\App\usuario $usuario)
     {
         $usuario->delete();
-        return view('usuario.listadoUsuarios');
+        return redirect('/listadoUsuarios'); //CHEQUEAR
     }
 
 

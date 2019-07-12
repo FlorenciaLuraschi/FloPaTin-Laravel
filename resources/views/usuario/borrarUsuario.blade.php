@@ -23,7 +23,6 @@
          {{method_field('DELETE')}}
          <button>Borrar</button>
        </form>
-
        </li>
        @endforeach
      </ul>

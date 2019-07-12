@@ -33,7 +33,7 @@
                       <i class="far fa-eye"></i>
                     </a>
                 </td>
-                <td><a href="view(usuario.editUsuario)">
+                <td><a href="{{url('/editUsuario', $usuario->id)}}">
                       <i class="far fa-edit"></i>
                     </a>
                 </td>

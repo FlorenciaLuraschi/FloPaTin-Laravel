@@ -36,16 +36,15 @@ Route::get('/perfil', function () {
     return view('perfil');
 });
 
-Route::post('/login', function () {
-    return view('login');
-});
+Route::get('/login', 'LoginController@create');
+// Route::post('/login', );
 
 Route::get('/register', 'registroController@create');
 Route::post('/register', 'registroController@store');
 Route::get('/listadoUsuarios', 'registroController@index');
-Route::get('/showUsuario', 'registroController@show');  //REVISAR
+Route::get('/showUsuario', 'registroController@show');  
 Route::get('/editUsuario/{usuario}/edit', 'registroController@edit');
-Route::patch('/updateUsuario/{usuario}', 'registroController@update');
+Route::patch('/editUsuario/{usuario}', 'registroController@update');
 Route::get('/borrarUsuario/{usuario}', 'registroController@destroy');
 
 
